@@ -197,6 +197,8 @@ def insert_tweet(connection,tweet):
         except:
             text = tweet['text']
 
+        text = remove_nulls(text)
+
         try:
             country_code = tweet['place']['country_code'].lower()
         except TypeError:
@@ -210,7 +212,7 @@ def insert_tweet(connection,tweet):
             state_code = None
 
         try:
-            place_name = tweet['place']['full_name']
+            place_name = remove_nulls(tweet['place']['full_name'])
         except TypeError:
             place_name = None
 
